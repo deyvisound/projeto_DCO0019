@@ -282,6 +282,18 @@ class ComposerStaticInit5eae6a4580fbd7834a80bddcf91b4483
             array (
                 0 => __DIR__ . '/..' . '/zendframework/zendxml/library',
             ),
+            'ZendDiagnostics\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/zendframework/zenddiagnostics/src',
+            ),
+            'ZendDiagnosticsTest\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/zendframework/zenddiagnostics/tests',
+            ),
+            'ZFTool\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/zendframework/zftool/src',
+            ),
         ),
         'P' => 
         array (
