@@ -1,118 +1,30 @@
-ZendSkeletonApplication
-=======================
-
-Introduction
-------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
-
-Installation using Composer
----------------------------
-
-The easiest way to create a new ZF2 project is to use [Composer](https://getcomposer.org/). If you don't have it already installed, then please install as per the [documentation](https://getcomposer.org/doc/00-intro.md).
-
-
-Create your new ZF2 project:
-
-    composer create-project -n -sdev zendframework/skeleton-application path/to/install
-
-
-
-### Installation using a tarball with a local Composer
-
-If you don't have composer installed globally then another way to create a new ZF2 project is to download the tarball and install it:
-
-1. Download the [tarball](https://github.com/zendframework/ZendSkeletonApplication/tarball/master), extract it and then install the dependencies with a locally installed Composer:
-
-        cd my/project/dir
-        curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
-    
-
-2. Download composer into your project directory and install the dependencies:
-
-        curl -s https://getcomposer.org/installer | php
-        php composer.phar install
-
-If you don't have access to curl, then install Composer into your project as per the [documentation](https://getcomposer.org/doc/00-intro.md).
-
-Web server setup
-----------------
-
-### PHP CLI server
-
-The simplest way to get started if you are using PHP 5.4 or above is to start the internal PHP cli-server in the root
-directory:
-
-    php -S 0.0.0.0:8080 -t public/ public/index.php
-
-This will start the cli-server on port 8080, and bind it to all network
-interfaces.
-
-**Note:** The built-in CLI server is *for development only*.
-
-### Vagrant server
-
-This project supports a basic [Vagrant](http://docs.vagrantup.com/v2/getting-started/index.html) configuration with an inline shell provisioner to run the Skeleton Application in a [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
-
-1. Run vagrant up command
-
-    vagrant up
-
-2. Visit [http://localhost:8085](http://localhost:8085) in your browser
-
-Look in [Vagrantfile](Vagrantfile) for configuration details.
-
-### Apache setup
-
-To setup apache, setup a virtual host to point to the public/ directory of the
-project and you should be ready to go! It should look something like below:
-
-    <VirtualHost *:80>
-        ServerName zf2-app.localhost
-        DocumentRoot /path/to/zf2-app/public
-        <Directory /path/to/zf2-app/public>
-            DirectoryIndex index.php
-            AllowOverride All
-            Order allow,deny
-            Allow from all
-            <IfModule mod_authz_core.c>
-            Require all granted
-            </IfModule>
-        </Directory>
-    </VirtualHost>
-
-### Nginx setup
-
-To setup nginx, open your `/path/to/nginx/nginx.conf` and add an
-[include directive](http://nginx.org/en/docs/ngx_core_module.html#include) below
-into `http` block if it does not already exist:
-
-    http {
-        # ...
-        include sites-enabled/*.conf;
-    }
-
-
-Create a virtual host configuration file for your project under `/path/to/nginx/sites-enabled/zf2-app.localhost.conf`
-it should look something like below:
-
-    server {
-        listen       80;
-        server_name  zf2-app.localhost;
-        root         /path/to/zf2-app/public;
-
-        location / {
-            index index.php;
-            try_files $uri $uri/ @php;
-        }
-
-        location @php {
-            # Pass the PHP requests to FastCGI server (php-fpm) on 127.0.0.1:9000
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_param  SCRIPT_FILENAME /path/to/zf2-app/public/index.php;
-            include fastcgi_params;
-        }
-    }
-
-Restart the nginx, now you should be ready to go!
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><!--This file was converted to xhtml by LibreOffice - see http://cgit.freedesktop.org/libreoffice/core/tree/filter/source/xslt for the code.--><head profile="http://dublincore.org/documents/dcmi-terms/"><meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/><title xml:lang="en-US">- no title specified</title><meta name="DCTERMS.title" content="" xml:lang="en-US"/><meta name="DCTERMS.language" content="en-US" scheme="DCTERMS.RFC4646"/><meta name="DCTERMS.source" content="http://xml.openoffice.org/odf2xhtml"/><meta name="DCTERMS.creator" content="Alunos"/><meta name="DCTERMS.issued" content="2016-05-24T23:58:00" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.contributor" content="Alunos"/><meta name="DCTERMS.modified" content="2016-05-25T00:24:00" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.provenance" content="" xml:lang="en-US"/><meta name="DCTERMS.subject" content="," xml:lang="en-US"/><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" hreflang="en"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" hreflang="en"/><link rel="schema.DCTYPE" href="http://purl.org/dc/dcmitype/" hreflang="en"/><link rel="schema.DCAM" href="http://purl.org/dc/dcam/" hreflang="en"/><style type="text/css">
+	@page {  }
+	table { border-collapse:collapse; border-spacing:0; empty-cells:show }
+	td, th { vertical-align:top; font-size:12pt;}
+	h1, h2, h3, h4, h5, h6 { clear:both }
+	ol, ul { margin:0; padding:0;}
+	li { list-style: none; margin:0; padding:0;}
+	<!-- "li span.odfLiEnd" - IE 7 issue-->
+	li span. { clear: both; line-height:0; width:0; height:0; margin:0; padding:0; }
+	span.footnodeNumber { padding-right:1em; }
+	span.annotation_style_by_filter { font-size:95%; font-family:Arial; background-color:#fff000;  margin:0; border:0; padding:0;  }
+	* { margin:0;}
+	.P1 { font-size:11pt; line-height:115%; margin-bottom:0in; margin-top:0in; text-align:left ! important; font-family:Calibri; writing-mode:lr-tb; }
+	.P2 { font-size:11pt; line-height:115%; margin-bottom:0in; margin-top:0in; text-align:left ! important; font-family:Calibri; writing-mode:lr-tb; }
+	.P3_borderStart { border-left-style:none; border-right-style:none; border-top-style:none; color:#17365d; font-size:26pt; letter-spacing:0.0035in; line-height:100%; margin-top:0in; padding-left:0in; padding-right:0in; padding-top:0in; text-align:left ! important; font-family:Cambria; writing-mode:lr-tb; padding-bottom:0.2083in;  border-bottom-style:none; }
+	.P3 { border-left-style:none; border-right-style:none; color:#17365d; font-size:26pt; letter-spacing:0.0035in; line-height:100%; padding-left:0in; padding-right:0in; text-align:left ! important; font-family:Cambria; writing-mode:lr-tb; padding-bottom:0.2083in; padding-top:0in;  border-top-style:none; border-bottom-style:none; }
+	.P3_borderEnd { border-bottom-width:0,0349cm; border-bottom-style:solid; border-bottom-color:#4f81bd; border-left-style:none; border-right-style:none; color:#17365d; font-size:26pt; letter-spacing:0.0035in; line-height:100%; margin-bottom:0.2083in; padding-bottom:0.0555in; padding-left:0in; padding-right:0in; text-align:left ! important; font-family:Cambria; writing-mode:lr-tb; padding-top:0in;  border-top-style:none;}
+	.P4 { font-size:11pt; line-height:115%; margin-bottom:0in; margin-left:0.5in; margin-right:0in; margin-top:0in; text-align:left ! important; text-indent:0in; font-family:Calibri; writing-mode:lr-tb; }
+	.Standard { font-size:11pt; line-height:115%; margin-bottom:0.139in; margin-top:0in; font-family:Calibri; writing-mode:lr-tb; text-align:left ! important; }
+	.Table1 { width:6.0035in; margin-left:-0.0785in; margin-top:0in; margin-bottom:0in; margin-right:auto;writing-mode:lr-tb; }
+	.Table1_A1 { padding-left:0.0785in; padding-right:0.075in; padding-top:0in; padding-bottom:0in; border-width:0,0176cm; border-style:solid; border-color:#00000a; }
+	.Table1_A { width:3.0014in; }
+	.Emphasis { font-style:italic; }
+	.T1 { font-style:italic; }
+	.T3 { font-size:22pt; }
+	.T4 { font-size:22pt; }
+	<!-- ODF styles with no properties representable as CSS -->
+	.Table1.1  { }
+	</style></head><body dir="ltr" style="max-width:8.2681in;margin-top:0.9839in; margin-bottom:0.9839in; margin-left:1.1811in; margin-right:1.1811in; writing-mode:lr-tb; "><p class="P3"><span class="Emphasis"><span class="T3">Caso de Uso: </span></span><span class="Emphasis"><span class="T4">Verificar, Emprestar ou Devolver Exemplares</span></span><span class="Emphasis"><span class="T3">        </span></span></p><table border="0" cellspacing="0" cellpadding="0" class="Table1"><colgroup><col width="333"/><col width="333"/></colgroup><tr class="Table11"><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1"><span class="T1">Nome do caso de uso</span></p></td><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P2">Verificar, emprestar ou devolver exemplares.</p></td></tr><tr class="Table11"><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1"><span class="T1">Sumário</span></p></td><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1">O usuário usa o sistema para verificar livros disponíveis e realizar empréstimos e devoluções.</p></td></tr><tr class="Table11"><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1"><span class="T1">Ator Primário</span></p></td><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1">Usuário</p></td></tr><tr class="Table11"><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1"><span class="T1">Precondições</span></p></td><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1">O usuário deve estar previamente cadastrado no sistema bibliotecário.</p></td></tr><tr class="Table11"><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1"><span class="T1">Fluxo Principal</span></p></td><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1">1 -&gt; O usuário será previamente cadastrado no sistema por um operador.</p><p class="P1">2 -&gt; O sistema lista uma variedade de livros ocupados e disponíveis com informações de datas previstas pra devolução e etc.</p><p class="P1">3 -&gt; O usuário tem a possibilidade de solicitar empréstimo na biblioteca, mas o operador é quem irá operar o sistema cadastrando o empréstimo solicitado.</p><p class="P1">4 -&gt; O usuário terá um prazo para devolução do livro, ao devolvê-lo, o operador do sistema bibliotecário terá de cadastrar a devolução.</p></td></tr><tr class="Table11"><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1"><span class="T1">Fluxo Alternativo</span></p></td><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1">(3) Impossibilitado de realizar empréstimo.</p><p class="P1"> </p><ol><li><p class="P4" style="margin-left:0cm;"><span style="display:block;float:left;min-width:NaNcm;">a.</span>Se o usuário tiver três empréstimos, o sistema deve negar a tentativa de empréstimo.<span class="odfLiEnd"/> </p></li><li><p class="P4" style="margin-left:0cm;"><span style="display:block;float:left;min-width:NaNcm;">b.</span>Se o usuário houver entregado um exemplar com dias em atraso, este terá uma suspensão proporcional ao número de dias em atraso.<span class="odfLiEnd"/> </p></li></ol><p class="P1"> </p></td></tr><tr class="Table11"><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1"><span class="T1">Pós-condições</span></p></td><td style="text-align:left;width:3.0014in; " class="Table1_A1"><p class="P1">O exemplar terá o status alterado para ‘ocupado’, impossibilitando erros no momento de empréstimos de exemplares similares.</p></td></tr></table><p class="Standard"> </p></body></html>
