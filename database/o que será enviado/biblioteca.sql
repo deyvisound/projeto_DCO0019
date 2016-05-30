@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 27, 2016 at 08:42 PM
+-- Generation Time: May 29, 2016 at 09:55 PM
 -- Server version: 5.5.49-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.17
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `assunto` (
   `idassunto` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(100) NOT NULL,
   PRIMARY KEY (`idassunto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `autor` (
   `idautor` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`idautor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='autores dos livros' AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='autores dos livros' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `departamento` (
   `idchefes` int(11) NOT NULL,
   PRIMARY KEY (`idDepartamento`,`idchefes`),
   KEY `fk_departamento_chefes1_idx` (`idchefes`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Departamento do funcionário que concedeu o empréstimo.\nDeyvison Rodrigo' AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Departamento do funcionário que concedeu o empréstimo.\nDeyvison Rodrigo' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `editora` (
   `nome` varchar(45) DEFAULT NULL,
   `cidade` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ideditora`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `exemplar` (
   PRIMARY KEY (`idexemplar`,`idobra`,`idsituacao`),
   KEY `fk_exemplar_obra1_idx` (`idobra`),
   KEY `fk_exemplar_situacao1_idx` (`idsituacao`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   `idDepartamento` int(11) NOT NULL,
   PRIMARY KEY (`idfuncionario`,`idDepartamento`),
   KEY `fk_funcionario_departamento1_idx` (`idDepartamento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Funcionário ligado a Devolução..\nDeyvison Rodrigo' AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Funcionário ligado a Devolução..\nDeyvison Rodrigo' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `obra` (
   KEY `fk_obra_editora1_idx` (`ideditora`),
   KEY `fk_obra_autor1_idx` (`idautor`),
   KEY `fk_obra_assunto1_idx` (`idassunto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `situacao` (
   `idsituacao` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(45) NOT NULL,
   PRIMARY KEY (`idsituacao`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Situação:\n1 -> Disponivel\n2 -> Emprestado\n3 -> Em Manutencao' AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Situação:\n1 -> Disponivel\n2 -> Emprestado\n3 -> Em Manutencao' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -191,8 +191,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `telefone` varchar(15) NOT NULL,
   `login` varchar(20) NOT NULL,
   `senha` varchar(32) NOT NULL,
+  `situacao` int(11) NOT NULL DEFAULT '1' COMMENT '1->Ativo, 2->suspenso, 3->Em Debito',
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='usuarios do sistema de bibliateca: \nauthor: deyvison Rodrigo' AUTO_INCREMENT=512 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='usuarios do sistema de bibliateca: \nauthor: deyvison Rodrigo' AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables
@@ -236,9 +237,9 @@ ALTER TABLE `funcionario`
 -- Constraints for table `obra`
 --
 ALTER TABLE `obra`
-  ADD CONSTRAINT `fk_obra_editora1` FOREIGN KEY (`ideditora`) REFERENCES `editora` (`ideditora`),
+  ADD CONSTRAINT `fk_obra_assunto1` FOREIGN KEY (`idassunto`) REFERENCES `assunto` (`idassunto`),
   ADD CONSTRAINT `fk_obra_autor1` FOREIGN KEY (`idautor`) REFERENCES `autor` (`idautor`),
-  ADD CONSTRAINT `fk_obra_assunto1` FOREIGN KEY (`idassunto`) REFERENCES `assunto` (`idassunto`);
+  ADD CONSTRAINT `fk_obra_editora1` FOREIGN KEY (`ideditora`) REFERENCES `editora` (`ideditora`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
